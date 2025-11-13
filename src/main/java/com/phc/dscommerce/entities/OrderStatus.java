@@ -1,0 +1,10 @@
+package com.phc.dscommerce.entities;
+
+public enum OrderStatus {
+
+    WAITING_PAYMENT,
+    PAID,
+    SHIPPED,
+    DELIVERED,
+    CANCELED;
+}
