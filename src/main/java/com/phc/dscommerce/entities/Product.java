@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@Table(name = "tb_product")
 @Getter
 @Setter
+@Entity
+@Table(name = "tb_product")
 public class Product {
 
     @Id
@@ -44,6 +44,7 @@ public class Product {
         this.price = price;
         this.imgUrl = imgUrl;
     }
+
 
     public List<Order> getOrders() {
         return orderItems.stream().map(x -> x.getId().getOrder()).toList();
