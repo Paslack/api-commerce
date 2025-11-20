@@ -37,4 +37,16 @@ public class ProductService {
                         x.getPrice(),
                         x.getImgUrl()));
     }
+
+    @Transactional
+    public ProductDTO insertProduct(ProductDTO productDTO){
+        Product product = new Product();
+        product.setName(productDTO.getName());
+        product.setDescription(productDTO.getDescription());
+        product.setPrice(productDTO.getPrice());
+        product.setImgUrl(productDTO.getImgUrl());
+
+        productRepository.save(product);
+        return new ProductDTO(product.getId(), product.getName(), product.getDescription(), product.getPrice(), productDTO.getImgUrl());
+    }
 }
