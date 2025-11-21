@@ -4,7 +4,6 @@ import com.phc.dscommerce.dto.ProductDTO;
 import com.phc.dscommerce.services.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -45,8 +44,8 @@ public class ProductController {
     }
 
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteByIdProduct(@PathVariable Long id) {
-        productService.deleteByIdProduct(id);
+    public ResponseEntity<Void> deleteProductById(@PathVariable Long id) {
+        productService.deleteProductById(id);
         return ResponseEntity.noContent().build();
     }
 }
