@@ -1,8 +1,6 @@
 package com.phc.dscommerce.dto;
 
 import lombok.Getter;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
 
 @Getter
@@ -11,6 +9,7 @@ public class CustomError {
     private Integer status;
     private String error;
     private String path;
+
 
 
     public CustomError(LocalDateTime timestamp, Integer status, String error, String path) {
