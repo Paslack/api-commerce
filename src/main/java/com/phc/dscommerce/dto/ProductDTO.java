@@ -19,6 +19,7 @@ public class ProductDTO {
 
     @Positive(message = "O preço deve ser positivo")
     private Double price;
+
     private String imgUrl;
 
 
@@ -29,6 +30,4 @@ public class ProductDTO {
         this.price = price;
         this.imgUrl = imgUrl;
     }
-
-
 }
