@@ -1,6 +1,7 @@
 package com.phc.dscommerce.services;
 
 import com.phc.dscommerce.dto.ProductDTO;
+import com.phc.dscommerce.dto.ProductMinDTO;
 import com.phc.dscommerce.entities.Product;
 import com.phc.dscommerce.exceptions.DatabaseException;
 import com.phc.dscommerce.exceptions.ResourceNotFoundException;
@@ -27,13 +28,12 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable) {
+    public Page<ProductMinDTO> findAll(String name, Pageable pageable) {
         Page<Product> result = productRepository.searchByName(name, pageable);
         return result.map(x ->
-                new ProductDTO(
+                new ProductMinDTO(
                         x.getId(),
                         x.getName(),
-                        x.getDescription(),
                         x.getPrice(),
                         x.getImgUrl()));
     }
