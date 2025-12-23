@@ -3,6 +3,7 @@ package com.phc.dscommerce.controllers.handlers;
 import com.phc.dscommerce.dto.CustomError;
 import com.phc.dscommerce.dto.ValidationError;
 import com.phc.dscommerce.exceptions.DatabaseException;
+import com.phc.dscommerce.exceptions.ForbiddenException;
 import com.phc.dscommerce.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -52,6 +53,18 @@ public class GlobalExceptionHandler {
         for (FieldError f : e.getBindingResult().getFieldErrors()) {
             error.addError(f.getField(), f.getDefaultMessage());
         }
+        return ResponseEntity.status(status).body(error);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<CustomError> handleForbidden(ForbiddenException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        CustomError error = new CustomError(
+                LocalDateTime.now(),
+                status.value(),
+                e.getMessage(),
+                request.getRequestURI()
+        );
         return ResponseEntity.status(status).body(error);
     }
 }
