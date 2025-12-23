@@ -1,7 +1,9 @@
 package com.phc.dscommerce.services;
 
+import com.phc.dscommerce.dto.CategoryDTO;
 import com.phc.dscommerce.dto.ProductDTO;
 import com.phc.dscommerce.dto.ProductMinDTO;
+import com.phc.dscommerce.entities.Category;
 import com.phc.dscommerce.entities.Product;
 import com.phc.dscommerce.exceptions.DatabaseException;
 import com.phc.dscommerce.exceptions.ResourceNotFoundException;
@@ -52,7 +54,7 @@ public class ProductService {
             Product product = productRepository.getReferenceById(id);
             copyDtoToEntity(productDTO, product);
             productRepository.save(product);
-            return new ProductDTO(product.getId(), product.getName(), product.getDescription(), product.getPrice(), productDTO.getImgUrl());
+            return new ProductDTO(product);
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Recurso não encontrado");
         }
@@ -74,5 +76,11 @@ public class ProductService {
         product.setDescription(productDTO.getDescription());
         product.setPrice(productDTO.getPrice());
         product.setImgUrl(productDTO.getImgUrl());
+        product.getCategories().clear();
+        for (CategoryDTO dto: productDTO.getCategories()) {
+            Category cat = new Category();
+            cat.setId(dto.getId());
+            product.getCategories().add(cat);
+        }
     }
 }
