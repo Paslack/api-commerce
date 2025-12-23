@@ -1,17 +1,17 @@
 package com.phc.dscommerce.dto;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class ValidationError extends CustomError {
-    private List<FieldMessage> errors = new ArrayList<>();
+    private Set<FieldMessage> errors = new HashSet<>();
 
     public ValidationError(LocalDateTime timestamp, Integer status, String error, String path) {
         super(timestamp, status, error, path);
     }
 
-    public List<FieldMessage> getErrors() {
+    public Set<FieldMessage> getErrors() {
         return errors;
     }
 
