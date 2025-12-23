@@ -2,10 +2,7 @@ package com.phc.dscommerce.dto;
 
 import com.phc.dscommerce.entities.Category;
 import com.phc.dscommerce.entities.Product;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -24,6 +21,7 @@ public class ProductDTO {
     private String description;
 
     @Positive(message = "O preço deve ser positivo")
+    @NotNull(message = "Campo requerido")
     private Double price;
 
     private String imgUrl;
